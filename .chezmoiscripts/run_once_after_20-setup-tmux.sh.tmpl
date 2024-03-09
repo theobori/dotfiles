@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+set -eufo pipefail
+
+readonly DEST_PREFIX_DIR=${HOME}/.tmux/plugins
+readonly GIT_REPO_URL=https://github.com/tmux-plugins/tpm
+
+mkdir -p ${DEST_PREFIX_DIR}
+
+if ! test -d ${DEST_PREFIX_DIR}/tpm
+then
+    git clone ${GIT_REPO_URL} ${DEST_PREFIX_DIR}/tpm
+fi

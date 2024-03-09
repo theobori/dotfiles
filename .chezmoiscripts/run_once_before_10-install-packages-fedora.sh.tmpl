@@ -1,0 +1,41 @@
+{{ if (eq .chezmoi.osRelease.id "fedora") -}}
+#!/usr/bin/env bash
+
+set -eufo pipefail
+
+echo "Begin setting up Fedora packages"
+
+readonly PACKAGES=(
+    curl
+    make
+    git
+    fish
+    tmux
+    exa
+    i3
+    i3blocks
+    rofi
+    rofimoji
+    flameshot
+    figlet
+    feh
+    xdotool
+    wireplumber
+    wtype
+)
+
+for package in ${PACKAGES[@]}
+do
+    if ! rpm -q ${package} > /dev/null
+    then
+    {{ if ne .chezmoi.username "root" -}}
+        sudo dnf install ${package} -y
+    {{ else -}}
+        dnf install ${package} -y
+    {{ end -}}
+    fi
+done
+
+echo "Finish setting up Fedora packages"
+
+{{ end -}}
