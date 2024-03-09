@@ -1,0 +1,13 @@
+font: Comic Code
+
+i3:
+  fontsize: 10
+
+dunst:
+  fontsize: 10
+
+rofi:
+  fontsize: 10
+
+wezterm:
+  fontsize: 11
