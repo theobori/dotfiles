@@ -1,0 +1,35 @@
+#!/usr/bin/env bash
+
+set -eufo pipefail
+
+readonly GIT_CLONE_DEST=$(mktemp -d -u)
+readonly GIT_REPO_URL=https://git.suckless.org/slock
+
+git clone ${GIT_REPO_URL} ${GIT_CLONE_DEST}
+
+cd ${GIT_CLONE_DEST}
+
+cat <<EOF >> config.h
+/* user and group to drop privileges to */
+static const char *user  = "{{ .chezmoi.username }}";
+static const char *group = "nogroup";
+
+static const char *colorname[NUMCOLS] = {
+	[INIT] =   "#44475a",     /* after initialization */
+	[INPUT] =  "#bd93f9",   /* during input */
+	[FAILED] = "#ff5555",   /* wrong password */
+};
+
+/* treat a cleared input like a wrong password (color) */
+static const int failonclear = 0;
+EOF
+
+make
+
+{{ if ne .chezmoi.username "root" -}}
+    sudo make install
+{{ else -}}
+    make install
+{{ end -}}
+
+rm -rf ${GIT_CLONE_DEST}
