@@ -7,7 +7,11 @@ alias li="exa -lahg --git --icons"
 alias tmux="tmux -2"
 alias tf="terraform"
 alias k="kubectl"
-alias bw="screen -d -m flatpak run com.bitwarden.desktop"
+alias s="screen -d -m"
+alias bw="s flatpak run com.bitwarden.desktop"
+alias obs="s flatpak run com.obsproject.Studio"
+alias ob="s flatpak run md.obsidian.Obsidian"
+alias spotify="flatpak run com.spotify.Client"
 alias emacs="emacs -nw"
 
 set -g PATH "$HOME/.cargo/bin:$PATH"
@@ -23,9 +27,6 @@ set -g GPG_TTY (tty)
 set -g EDITOR "emacs -nw"
 
 set -g theme_color_scheme dracula
-
-# Spotify dracula theme
-fish_add_path /home/nagi/.spicetify
 
 # fzf fish plugin
 fzf_configure_bindings
