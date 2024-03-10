@@ -16,3 +16,4 @@ If you want to help the project, you can follow the guidelines in [CONTRIBUTING.
 
 - [x] Fedora support
 - [x] Script to setup slock
+- [x] Integrate age encryption
