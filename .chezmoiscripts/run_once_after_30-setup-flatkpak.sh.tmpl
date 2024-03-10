@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+set -eufo pipefail
+
+readonly APPLICATIONS=(
+	com.bitwarden.desktop
+	com.obsproject.Studio
+	md.obsidian.Obsidian
+	com.spotify.Client
+	org.inkscape.Inkscape
+)
+
+for application in ${APPLICATIONS[@]}
+do
+	flatpak list --app | grep -q ${application} ||
+		flatpak install flathub ${application}
+done

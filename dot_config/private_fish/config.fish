@@ -12,6 +12,7 @@ alias bw="s flatpak run com.bitwarden.desktop"
 alias obs="s flatpak run com.obsproject.Studio"
 alias ob="s flatpak run md.obsidian.Obsidian"
 alias spotify="flatpak run com.spotify.Client"
+alias ink="s flatpak run org.inkscape.Inkscape"
 alias emacs="emacs -nw"
 
 set -g PATH "$HOME/.cargo/bin:$PATH"
