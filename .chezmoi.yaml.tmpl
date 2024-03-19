@@ -1,9 +1,11 @@
 {{ $has_age := false }}
 {{ $sudo := "sudo" }}
+{{ $font := "Comic Code" }}
 
 {{ if stdinIsATTY }}
 {{ $has_age = promptBool "do you have age " }}
 {{ $sudo = promptString "sudo or doas " }}
+{{ $font = promptString "font name " }}
 {{ end }}
 
 {{ if and (ne $sudo "sudo") (ne $sudo "doas") }}
@@ -19,3 +21,4 @@ age:
 
 data:
     sudo: {{ $sudo }}
+    font: {{ $font }}
