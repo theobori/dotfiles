@@ -1,6 +1,6 @@
 # 🏠 dotfiles
 
-This is my dotfiles and configurations managed with chezmoi. For the moment it is only designed for Fedora.
+This is my dotfiles and configurations managed with chezmoi. For the moment it is only designed for Fedora and Arch Linux.
 
 ## 📖 Build and run
 
