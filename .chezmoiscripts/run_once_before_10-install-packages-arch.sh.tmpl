@@ -41,6 +41,7 @@ readonly PACKAGES=(
     which
 
     xorg
+    xorg-xinit
     curl
     man
     screen
@@ -102,7 +103,6 @@ for package_aur in ${PACKAGES_AUR[@]}
 do
     ${SUDO} yay -S --noconfirm --needed ${package_aur}
 done
-
 
 echo "Finish setting up Arch Linux packages"
 
