@@ -2,6 +2,14 @@
 
 set -eufo pipefail
 
+{{ if ne .chezmoi.username "root" -}}
+    readonly SUDO=sudo
+{{ else -}}
+    readonly SUDO=
+{{ end -}}
+
+echo "Begin setting up slock"
+
 readonly GIT_CLONE_DEST=$(mktemp -d -u)
 readonly GIT_REPO_URL=https://git.suckless.org/slock
 
@@ -26,10 +34,8 @@ EOF
 
 make
 
-{{ if ne .chezmoi.username "root" -}}
-    sudo make install
-{{ else -}}
-    make install
-{{ end -}}
+${SUDO} make install
 
 rm -rf ${GIT_CLONE_DEST}
+
+echo "Finish setting up slock"

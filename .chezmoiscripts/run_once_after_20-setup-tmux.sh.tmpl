@@ -2,6 +2,8 @@
 
 set -eufo pipefail
 
+echo "Begin setting up tmux"
+
 readonly DEST_PREFIX_DIR=${HOME}/.tmux/plugins
 readonly GIT_REPO_URL=https://github.com/tmux-plugins/tpm
 
@@ -11,3 +13,5 @@ if ! test -d ${DEST_PREFIX_DIR}/tpm
 then
     git clone ${GIT_REPO_URL} ${DEST_PREFIX_DIR}/tpm
 fi
+
+echo "Finish setting up tmux"

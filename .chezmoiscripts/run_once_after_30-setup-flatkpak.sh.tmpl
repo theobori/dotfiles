@@ -2,6 +2,8 @@
 
 set -eufo pipefail
 
+echo "Begin setting up flatpak"
+
 readonly APPLICATIONS=(
 	com.bitwarden.desktop
 	com.obsproject.Studio
@@ -15,3 +17,5 @@ do
 	flatpak list --app | grep -q ${application} ||
 		flatpak install flathub ${application}
 done
+
+echo "Finish setting up flatpak"

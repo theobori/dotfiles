@@ -3,6 +3,12 @@
 
 set -eufo pipefail
 
+{{ if ne .chezmoi.username "root" -}}
+    readonly SUDO=sudo
+{{ else -}}
+    readonly SUDO=
+{{ end -}}
+
 echo "Begin setting up Fedora packages"
 
 readonly PACKAGES=(
@@ -23,17 +29,30 @@ readonly PACKAGES=(
     wireplumber
     wtype
     flatpak
+    tldr
+    emacs-nox
+
+    # COPR packages name
+    wezterm
 )
+
+readonly COPRS=(
+    wezfurlong/wezterm-nightly
+)
+
+for copr in ${COPRS[@]}
+do
+    if ! dnf copr list | grep -q ${copr}
+    then
+        ${SUDO} dnf copr enable ${copr} -y
+    fi
+done
 
 for package in ${PACKAGES[@]}
 do
     if ! rpm -q ${package} > /dev/null
     then
-    {{ if ne .chezmoi.username "root" -}}
-        sudo dnf install ${package} -y
-    {{ else -}}
-        dnf install ${package} -y
-    {{ end -}}
+        ${SUDO} dnf install ${package} -y
     fi
 done
 

@@ -2,15 +2,38 @@
 
 set -eufo pipefail
 
-readonly GIT_CLONE_DEST=$(mktemp -d -u)
-readonly GIT_REPO_URL=https://github.com/LukeSmithxyz/voidrice.git
-
-git clone ${GIT_REPO_URL} ${GIT_CLONE_DEST}
-
 {{ if ne .chezmoi.username "root" -}}
-    sudo cp -r ${GIT_CLONE_DEST}/.local/bin/statusbar/ /usr/bin/
+    readonly SUDO=sudo
 {{ else -}}
-    cp -r ${GIT_CLONE_DEST}/.local/bin/statusbar/ /usr/bin/
+    readonly SUDO=
 {{ end -}}
 
-rm -rf ${GIT_CLONE_DEST}
+echo "Begin setting up i3blocks"
+
+function statusbar_luke_smith() {
+    local -r git_clone_dest=${1}
+    local -r git_repo_url=${2}
+
+    git clone ${git_repo_url} ${git_clone_dest}
+
+    ${SUDO} cp -r ${git_clone_dest}/.local/bin/statusbar/ /usr/bin/
+
+    rm -rf ${git_clone_dest}
+}
+
+function script_collection() {
+    local -r git_clone_dest=${1}
+    local -r git_repo_url=${2}
+
+    git clone ${git_repo_url} ${git_clone_dest}
+
+    cd ${git_clone_dest}
+    ${SUDO} make install
+
+    rm -rf ${git_clone_dest}
+}
+
+statusbar_luke_smith $(mktemp -d -u) https://github.com/LukeSmithxyz/voidrice.git
+script_collection $(mktemp -d -u) https://github.com/theobori/scripts-collection.git
+
+echo "Finish setting up i3blocks"

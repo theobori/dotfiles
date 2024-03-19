@@ -1,5 +1,11 @@
 #!/usr/bin/env fish
 
+{{ if ne .chezmoi.username "root" -}}
+    set sudo sudo
+{{ else -}}
+    set sudo
+{{ end -}}
+
 echo "Begin setting up fish"
 
 # fisher
@@ -38,11 +44,7 @@ git clone https://gitlab.com/phoneybadger/pokemon-colorscripts.git
 
 cd pokemon-colorscripts
 
-{{ if ne .chezmoi.username "root" -}}
-    sudo ./install.sh
-{{ else -}}
-    ./install.sh
-{{ end -}}
+$sudo ./install.sh
 
 cd ..
 rm -rf pokemon-colorscripts

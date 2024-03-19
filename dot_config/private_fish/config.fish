@@ -14,6 +14,7 @@ alias ob="s flatpak run md.obsidian.Obsidian"
 alias spotify="flatpak run com.spotify.Client"
 alias ink="s flatpak run org.inkscape.Inkscape"
 alias emacs="emacs -nw"
+alias tree="tree -a -C"
 
 set -g PATH "$HOME/.cargo/bin:$PATH"
 set -g PATH "$PATH:/nix/var/nix/profiles/default/bin"
