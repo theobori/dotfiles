@@ -1,0 +1,25 @@
+[user]
+	email = theo1.bori@epitech.eu
+	name = Théo Bori
+	signingkey = EEFBCC3AC529CFD1943DA75CBDD57BE99D555965
+[pull]
+	rebase = false
+[core]
+	editor = emacs -nw
+[commit]
+	gpgsign = true
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+[push]
+	autoSetupRemote = true
+[url "ssh://git@yourserver"]
+	insteadOf = https://yourserver
+[column]
+	ui = auto
+[branch]
+	sort = -committerdate
+[fetch]
+	writeCommitGraph = true

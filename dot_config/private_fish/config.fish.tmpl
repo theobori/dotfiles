@@ -2,6 +2,10 @@ if status is-interactive
     # Commands to run in interactive sessions can go here
 end
 
+if test "$DISPLAY" = "" -a "$XDG_VTNR" = 1
+    tbsm
+end
+
 alias la="exa -lahg --git"
 alias li="exa -lahg --git --icons"
 alias tmux="tmux -2"

@@ -69,6 +69,10 @@ readonly PACKAGES=(
     fd
 )
 
+readonly PACKAGES_AUR=(
+    tbsm
+)
+
 function install_yay() {
     local -r yay_dest_dir=$(mktemp -d -u)
     local -r yay_git_url=https://aur.archlinux.org/yay.git
@@ -85,7 +89,7 @@ for package in ${PACKAGES[@]}
 do
     if ! pacman -Qq ${package} &> /dev/null
     then
-        ${SUDO} pacman -S --needed ${package} --noconfirm
+        ${SUDO} pacman -S --noconfirm --needed ${package}
     fi
 done
 
@@ -93,6 +97,12 @@ if ! command -v yay > /dev/null
 then
     install_yay
 fi
+
+for package_aur in ${PACKAGES_AUR[@]}
+do
+    ${SUDO} yay -S --noconfirm --needed ${package_aur}
+done
+
 
 echo "Finish setting up Arch Linux packages"
 
