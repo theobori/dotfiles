@@ -16,7 +16,7 @@ function statusbar_luke_smith() {
 
     git clone ${git_repo_url} ${git_clone_dest}
 
-    ${SUDO} cp -r ${git_clone_dest}/.local/bin/statusbar/ /usr/bin/
+    ${SUDO} cp -a ${git_clone_dest}/.local/bin/statusbar/. /usr/bin/
 
     rm -rf ${git_clone_dest}
 }
