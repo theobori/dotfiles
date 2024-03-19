@@ -1,7 +1,7 @@
 #!/usr/bin/env fish
 
 {{ if ne .chezmoi.username "root" -}}
-    set sudo sudo
+    set sudo {{ .sudo }}
 {{ else -}}
     set sudo
 {{ end -}}

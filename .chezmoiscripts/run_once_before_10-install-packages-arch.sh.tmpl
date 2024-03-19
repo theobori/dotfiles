@@ -1,0 +1,100 @@
+{{ if (eq .chezmoi.osRelease.id "arch") -}}
+#!/usr/bin/env bash
+
+set -eufo pipefail
+
+{{ if ne .chezmoi.username "root" -}}
+    readonly SUDO={{ .sudo }}
+{{ else -}}
+    readonly SUDO=
+{{ end -}}
+
+echo "Begin setting up Arch Linux packages"
+
+readonly PACKAGES=(
+    # base-devel without sudo
+    base
+    autoconf
+    automake
+    binutils
+    bison
+    fakeroot
+    file
+    findutils
+    flex
+    gawk
+    gcc
+    gettext
+    grep
+    groff
+    gzip
+    libtool
+    m4
+    make
+    pacman
+    patch
+    pkgconf
+    sed
+    tar
+    texinfo
+    util-linux
+    which
+
+    xorg
+    curl
+    opendoas
+    man
+    screen
+    git
+    fish
+    tmux
+    exa
+    tree
+    i3
+    i3blocks
+    i3status
+    rofi
+    rofimoji
+    flameshot
+    figlet
+    feh
+    xdotool
+    wireplumber
+    wtype
+    flatpak
+    tldr
+    emacs-nox
+    wezterm
+    bat
+    fzf
+    fd
+)
+
+function install_yay() {
+    local -r yay_dest_dir=$(mktemp -d -u)
+    local -r yay_git_url=https://aur.archlinux.org/yay.git
+
+    git clone ${yay_git_url} ${yay_dest_dir}
+    cd ${yay_dest_dir}
+
+    makepkg -si
+
+    rm -rf ${yay_dest_dir}
+}
+
+for package in ${PACKAGES[@]}
+do
+    if ! pacman -Qq ${package} &> /dev/null
+    then
+        ${SUDO} pacman -S --needed ${package} --noconfirm
+    fi
+done
+
+if ! command -v yay > /dev/null
+then
+    install_yay
+fi
+
+echo "Finish setting up Arch Linux packages"
+
+{{ end -}}

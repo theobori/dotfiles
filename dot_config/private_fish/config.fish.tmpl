@@ -16,6 +16,11 @@ alias ink="s flatpak run org.inkscape.Inkscape"
 alias emacs="emacs -nw"
 alias tree="tree -a -C"
 
+{{ if (eq .chezmoi.osRelease.id "arch") -}}
+alias update-arch="yay && flatpak update"
+alias clean-arch="yay -Sc && yay -Yc && flatpak remove --unused"
+{{ end -}}
+
 set -g PATH "$HOME/.cargo/bin:$PATH"
 set -g PATH "$PATH:/nix/var/nix/profiles/default/bin"
 set -g PATH "$PATH:$HOME/.nix-profile/bin"

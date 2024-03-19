@@ -15,7 +15,7 @@ readonly APPLICATIONS=(
 for application in ${APPLICATIONS[@]}
 do
 	flatpak list --app | grep -q ${application} ||
-		flatpak install flathub ${application}
+		flatpak install flathub ${application} -y
 done
 
 echo "Finish setting up flatpak"

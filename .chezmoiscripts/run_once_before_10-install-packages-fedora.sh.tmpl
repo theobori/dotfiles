@@ -4,7 +4,7 @@
 set -eufo pipefail
 
 {{ if ne .chezmoi.username "root" -}}
-    readonly SUDO=sudo
+    readonly SUDO={{ .sudo }}
 {{ else -}}
     readonly SUDO=
 {{ end -}}
