@@ -12,9 +12,9 @@ color=f8f8f2
 separator_block_width=40
 markup=pango
 
-[papesan_status]
-command=sc-is_live -c Papesan -d Pape -n
-interval=300
+# [papesan_status]
+# command=sc-is_live -c Papesan -d Pape -n
+# interval=300
 
 [internet]
 command=sb-internet
@@ -23,11 +23,6 @@ interval=1
 [nettraf]
 command=sb-nettraf
 interval=1
-# border=#bd93f9
-# border_top=0
-# border_right=0
-# border_bottom=1
-# border_left=0
 
 [battery]
 command=sb-battery
