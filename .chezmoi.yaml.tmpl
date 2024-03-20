@@ -4,12 +4,11 @@
 
 {{ if stdinIsATTY }}
 {{ $has_age = promptBool "do you have age " }}
-{{ $sudo = promptString "sudo or doas " }}
-{{ $font = promptString "font name " }}
-{{ end }}
 
-{{ if and (ne $sudo "sudo") (ne $sudo "doas") }}
-{{ $sudo = "sudo" }}
+{{- $sudo_choices := list "sudo" "doas" -}}
+{{- $sudo = promptChoiceOnce . "choice" "choose" $sudo_choices -}}
+
+{{ $font = promptString "font name " }}
 {{ end }}
 
 {{ if $has_age }}

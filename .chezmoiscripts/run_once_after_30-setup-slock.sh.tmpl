@@ -10,6 +10,15 @@ set -eufo pipefail
 
 echo "Begin setting up slock"
 
+readonly GROUP=nogroup
+
+if ! grep -q "^${GROUP}" /etc/group
+then
+	${SUDO} groupadd nogroup
+fi
+
+${SUDO} usermod -aG nogroup {{ .chezmoi.username }}
+
 readonly GIT_CLONE_DEST=$(mktemp -d -u)
 readonly GIT_REPO_URL=https://git.suckless.org/slock
 
