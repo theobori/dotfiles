@@ -30,7 +30,7 @@ set -g PATH "$PATH:/usr/local/go/bin:$HOME/go/bin"
 set -g PATH "$PATH:$HOME/.config/emacs/bin"
 set -g PATH "$PATH:/usr/local/games"
 
-set -g GPG_TTY (tty)
+set -gx GPG_TTY (tty)
 set -g EDITOR "emacs -nw"
 
 set -g theme_color_scheme dracula

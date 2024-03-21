@@ -49,4 +49,10 @@ $sudo ./install.sh
 cd ..
 rm -rf pokemon-colorscripts
 
+# Make fish the user default shell
+
+if not grep {{ .chezmoi.username }} /etc/passwd | cut -d: -f7 | grep -q fish
+    chsh -s (which fish)
+end
+
 echo "Finish setting up fish"
