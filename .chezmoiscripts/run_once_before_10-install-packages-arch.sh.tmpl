@@ -68,6 +68,8 @@ readonly PACKAGES=(
     bat
     fzf
     fd
+    debugedit
+    noto-fonts-emoji
 )
 
 readonly PACKAGES_AUR=(
@@ -101,7 +103,7 @@ fi
 
 for package_aur in ${PACKAGES_AUR[@]}
 do
-    ${SUDO} yay -S --noconfirm --needed ${package_aur}
+    yay -S --noconfirm --needed ${package_aur}
 done
 
 echo "Finish setting up Arch Linux packages"
