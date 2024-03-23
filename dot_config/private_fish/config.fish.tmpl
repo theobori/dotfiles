@@ -14,7 +14,7 @@ alias ob="s flatpak run md.obsidian.Obsidian"
 alias spotify="flatpak run com.spotify.Client"
 alias ink="s flatpak run org.inkscape.Inkscape"
 alias emacs="emacs -nw"
-alias tree="tree -a -C"
+alias tree="tree -C"
 
 {{ if (eq .chezmoi.osRelease.id "arch") -}}
 alias update-arch="yay && flatpak update"
