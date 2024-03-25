@@ -33,7 +33,7 @@ command=sb-volume
 interval=1
 
 [home]
-command=sb-disk /mnt
+command=sb-disk /
 interval=3
 
 [memory]
