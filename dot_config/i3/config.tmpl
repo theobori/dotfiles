@@ -271,3 +271,8 @@ bindsym $mod+BackSpace mode "Screenshot: [c]opy, [f]ull, [s]creen"
 
 bindsym XF86PowerDown exec --no-startup-id "notify-send -u critical -t 2000 'Pressed the power button'"
 bindsym XF86PowerOff exec --no-startup-id "notify-send -u critical -t 2000 'Pressed the power button'"
+
+# greenclip
+exec --no-startup-id greenclip daemon > /dev/null
+
+bindsym $mod+w exec --no-startup-id rofi -modi "clipboard:greenclip print" -show clipboard
