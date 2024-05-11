@@ -1,4 +1,4 @@
-systemctl --user import-environment DISPLAY
+systemctl --user import-environment DISPLAY XAUTHORITY
 
 xset s off
 xset dpms 0 0 0
