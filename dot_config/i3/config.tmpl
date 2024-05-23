@@ -276,3 +276,6 @@ bindsym XF86PowerOff exec --no-startup-id "notify-send -u critical -t 2000 'Pres
 exec --no-startup-id greenclip daemon > /dev/null
 
 bindsym $mod+w exec --no-startup-id rofi -modi "clipboard:greenclip print" -show clipboard
+
+# dunst (instead of a systemd servier)
+exec --no-startup-id dunst
