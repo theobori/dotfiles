@@ -97,6 +97,9 @@ function install_yay() {
     rm -rf ${yay_dest_dir}
 }
 
+# This loop prevents doas asking password for every package.
+# Even with a declared persistent session,
+# with the `persist` keyword in configuration.
 for package in ${PACKAGES[@]}
 do
     if ! pacman -Qq ${package} &> /dev/null
