@@ -26,6 +26,7 @@ set -g PATH "$PATH:$HOME/.local/bin"
 set -g PATH "$PATH:$HOME/bin"
 set -g PATH "$PATH:/usr/local/go/bin:$HOME/go/bin"
 set -g PATH "$PATH:/usr/local/games"
+set -g PATH "$PATH:$HOME/.nix-profile/bin"
 
 set -gx GPG_TTY (tty)
 set -g EDITOR "emacs -nw"
@@ -37,5 +38,5 @@ set -g theme_color_scheme dracula
 # end
 
 zoxide init fish | source
-
 thefuck --alias | source
+direnv hook fish | source
