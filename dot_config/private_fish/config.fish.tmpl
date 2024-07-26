@@ -15,6 +15,7 @@ alias spotify="flatpak run com.spotify.Client"
 alias ink="s flatpak run org.inkscape.Inkscape"
 alias emacs="emacs -nw"
 alias tree="tree -C"
+alias d="date +%Y-%m-%d"
 
 {{ if (eq .chezmoi.osRelease.id "arch") -}}
 alias update-arch="yay && flatpak update"
